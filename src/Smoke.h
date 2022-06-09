@@ -38,7 +38,7 @@ public:
 
         glfwPollEvents();
         glfwSetCursorPos(window, 1024 / 2, 768 / 2);
-        glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         glfwSwapInterval(1);
 
         glEnable(GL_DEPTH_TEST);
@@ -88,6 +88,7 @@ public:
         g_particule_position_size_data = new GLfloat[MaxParticles * 4];
 
         lastTime = glfwGetTime();
+
     }
 
     void update() {
@@ -158,7 +159,7 @@ public:
                     // Symulowanie grawitacji
                     p.speed += glm::vec3(10.0f,9.81f, 0.0f) * (float)delta * 0.5f;
                     p.pos += p.speed * (float)delta;
-                    p.cameradistance = glm::length( p.pos - CameraPosition);
+                    //p.cameradistance = glm::length( p.pos - CameraPosition);
                     //ParticlesContainer[i].pos += glm::vec3(0.0f,10.0f, 0.0f) * (float)delta;
 
                     // Wypełnianie buffora
@@ -193,6 +194,8 @@ public:
         glBindBuffer(GL_ARRAY_BUFFER, color_buffer);
         glBufferData(GL_ARRAY_BUFFER, MaxParticles * 4 * sizeof(GLubyte), NULL, GL_STREAM_DRAW); //  Buffer orphaning, metoda na poprawe wydajnosci
         glBufferSubData(GL_ARRAY_BUFFER, 0, ParticlesCount * sizeof(GLubyte) * 4, g_particule_color_data);
+
+
 
 
         glEnable(GL_BLEND);
@@ -265,6 +268,8 @@ public:
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
         glDisableVertexAttribArray(2);
+
+
 
         glfwSwapBuffers(window);
         glfwPollEvents();

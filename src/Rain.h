@@ -3,9 +3,11 @@
 
 #include <algorithm>
 #include <gl/GL.h>
+
 #include "dependeces/Common/Initialize.h"
 #include "dependeces/Common/controls.hpp"
 #include "dependeces/Common/Object.h"
+
 #include "Particle.h"
 
 class Rain : Particles{
@@ -24,6 +26,8 @@ private:
     GLuint vertex_buffer;
     GLuint color_buffer;
 
+    bool show_demo_window = true;
+    bool show_another_window = false;
 public:
 
     Rain(){};
@@ -40,6 +44,7 @@ public:
         glfwSetCursorPos(window, 1024 / 2, 768 / 2);
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glfwSwapInterval(1);
+
 
         glEnable(GL_DEPTH_TEST);
 
@@ -88,10 +93,13 @@ public:
         g_particule_position_size_data = new GLfloat[MaxParticles * 4];
 
         lastTime = glfwGetTime();
+
+
     }
 
     void update() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
         currentTime = glfwGetTime();
         delta = currentTime - lastTime;

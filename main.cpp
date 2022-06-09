@@ -16,9 +16,10 @@ GLFWwindow *window;
 #include "src/Smoke.h"
 #include "src/Fog.h"
 
-
 int main() {
-    Rain app;
+    //Rain app;
+    //Smoke app;
+    Fog app;
     app.setUp();
     do {
         app.update();
@@ -28,5 +29,6 @@ int main() {
            glfwWindowShouldClose(window) == 0);
 
     app.clean();
+
     return 0;
 }
